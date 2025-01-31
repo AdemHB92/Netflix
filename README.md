@@ -1,12 +1,7 @@
-## Pré-requis
-Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
-- Python (version 3.7 ou plus)
-- Pip (gestionnaire de paquets Python)
-  
 ### 📌 **README.md : Analyse des Données Netflix**
 
-```markdown
+
 # 📊 Projet d'Analyse des Données Netflix
 
 ## 🎯 Objectif du Projet
@@ -31,10 +26,39 @@ Nous avons effectué les étapes suivantes :
 | `show_type.csv` | Relation entre `show_id` et `type_id` |
 | `show_country.csv` | Relation entre `show_id` et `country_id` |
 | `show_listed_in.csv` | Relation entre `show_id` et `listed_in_id` |
+| `actor_data` | Données des acteurs présents dans les films et séries |
+| `actor_table` | Table des acteurs avec `actor_id` |
+| `cast_data` | Données sur la distribution des films et séries |
+| `country_data` | Données des pays associés aux films et séries |
+| `date_added_data` | Dates d'ajout des films et séries sur Netflix |
+| `date_added_table` | Table des dates avec `date_id` |
+| `description_data` | Descriptions des films et séries |
+| `director_data` | Données des réalisateurs des films et séries |
+| `director_table` | Table des réalisateurs avec `director_id` |
+| `duration_data` | Durée des films et nombre de saisons des séries |
+| `duration_table` | Table des durées avec `duration_id` |
+| `movies_only` | Liste des films uniquement |
+| `productions_france` | Productions Netflix en France |
+| `rating_data` | Notes et classifications des films et séries |
+| `rating_table` | Table des classifications avec `rating_id` |
+| `release_year_data` | Années de sortie des films et séries |
+| `release_year_table` | Table des années de sortie avec `year_id` |
+| `series_only` | Liste des séries uniquement |
+| `title_data` | Titres des films et séries |
+| `title_table` | Table des titres avec `title_id` |
+| `type_data` | Données des types (`Movie`, `TV Show`) |
+
+
 
 ---
 
 ## 🛠️ Étapes du Projet
+### Prérequis
+Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
+
+Python (version 3.7 ou plus)
+Pip (gestionnaire de paquets Python)
+
 
 ### **1️⃣ Chargement des Données**
 Nous avons commencé par charger les fichiers CSV contenant les données Netflix.  
@@ -47,13 +71,12 @@ Les données contiennent des informations sur les films et séries, telles que :
 
 📌 **Technologies utilisées** : `pandas` pour la manipulation des données.
 
-```python
+```bash
 import pandas as pd
 file_path = "dataframes/netflix_titles.csv"
 netflix_data = pd.read_csv(file_path, delimiter=';')
 ```
 
----
 
 ### **2️⃣ Nettoyage et Préparation des Données**
 Les données brutes contenaient des **valeurs manquantes (`NaN`)** et des **données mal formatées**.  
@@ -65,7 +88,7 @@ Nous avons effectué plusieurs traitements :
 
 📌 **Exemple de correction des valeurs nulles** :
 
-```python
+```bash
 # Remplacement des valeurs manquantes dans 'rating' par 'Unknown'
 netflix_data['rating'] = netflix_data['rating'].fillna('Unknown')
 ```
@@ -83,7 +106,7 @@ Pour éviter les **données dupliquées**, nous avons généré des **identifian
 
 📌 **Exemple de génération d'ID unique pour les types** :
 
-```python
+```bash
 def create_id_table(df, column_name, id_name):
     """Crée une table avec ID unique basé sur une colonne spécifique"""
     unique_values = df[[column_name]].drop_duplicates().reset_index(drop=True)
@@ -128,7 +151,7 @@ INSERT INTO show_title (show_id, title_id) VALUES ('s1', 101);
 Pour mieux comprendre les données Netflix, nous avons utilisé **Matplotlib** et **Seaborn** pour visualiser les tendances.
 
 📌 **Graphique : Présence des valeurs nulles**
-```python
+```bash
 import matplotlib.pyplot as plt
 
 missing_values = netflix_data.isnull().sum()
@@ -157,17 +180,3 @@ plt.show()
 
 ---
 
-
-
-## 📌 Lancer le Projet
-1. **Installer les bibliothèques nécessaires**  
-```bash
-pip install pandas matplotlib seaborn sqlalchemy
-```
-2. **Exécuter le script principal**
-```bash
-python netflix_analysis.py
-```
-3. **Consulter les fichiers de sortie dans le dossier `dataframes/`**
-
----
