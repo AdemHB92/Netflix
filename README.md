@@ -1,4 +1,9 @@
+## Pré-requis
+Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
+- Python (version 3.7 ou plus)
+- Pip (gestionnaire de paquets Python)
+  
 ### 📌 **README.md : Analyse des Données Netflix**
 
 ```markdown
